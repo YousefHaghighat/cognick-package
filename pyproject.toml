@@ -1,0 +1,23 @@
+[project]
+name = "cognick"
+version = "0.0.1"
+description = "Application compatible with Cognick integrated systems."
+authors = [{name="Yousef Haghighat", email="yousefmpym1@gmail.com"}]
+readme = "README.md"
+license = { file = "LICENSE" }
+
+dependencies = [
+    "Django>=5.2",
+    "djangorestframework>=3",
+    "requests>=2",
+    "python-jose>=3"
+]
+
+[project.urls]
+Homepage = "https://github.com/YousefHaghighat/cognick-package.git"
+
+[build-system]
+requires = [
+    "setuptools>=61"
+]
+build-backend = "setuptools.build_meta"
