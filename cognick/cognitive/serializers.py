@@ -1,33 +1,19 @@
-from rest_framework import serializers
+from typing import Any
 
+from rest_framework import serializers
 from .objects import CognitiveParameter
 
 
 class CognitiveParameterSerializer(serializers.Serializer):
-    id = serializers.CharField()
-    name_en = serializers.CharField()
-    name_fa = serializers.CharField()
-    name_ar = serializers.CharField()
-    icon = serializers.CharField(
-        allow_null=True,
-        required=False,
-    )
-    description_en = serializers.CharField(
-        allow_blank=True,
-        allow_null=True,
-        required=False,
-    )
-    description_fa = serializers.CharField(
-        allow_blank=True,
-        allow_null=True,
-        required=False,
-    )
-    description_ar = serializers.CharField(
-        allow_blank=True,
-        allow_null=True,
-        required=False,
-    )
-    parent = serializers.CharField(
-        allow_null=True,
-        required=False,
-    )
+    """
+    Dynamically serializes a CognitiveParameter payload.
+    """
+
+    def to_representation(self, instance: CognitiveParameter) -> dict[str, Any]:
+        if isinstance(instance, CognitiveParameter):
+            return instance.payload.copy()
+
+        if isinstance(instance, dict):
+            return instance.copy()
+
+        return super().to_representation(instance)
