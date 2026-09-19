@@ -6,7 +6,7 @@ from django.conf import settings
 from .exceptions import (
     CognitiveConnectionException,
     CognitiveNotFoundException,
-    CognitiveResponseException,
+    CognitiveResponseException
 )
 from .objects import CognitiveParameter
 
@@ -21,7 +21,7 @@ class CognitiveClient:
         timeout: int | None = None,
         headers: dict[str, str] | None = None,
     ):
-        self.base_url = self._get_base_url()
+        self.url = self._get_url()
         self.timeout = timeout or getattr(
             settings,
             "COGNICK_COGNITIVE_TIMEOUT",
@@ -30,28 +30,26 @@ class CognitiveClient:
         self.headers = headers or {}
 
     @staticmethod
-    def _get_base_url() -> str:
-        base_url = getattr(
+    def _get_url() -> str:
+        url = getattr(
             settings,
-            "COGNICK_COGNITIVE_BASE_URL",
+            "COGNICK_COGNITIVE_URL",
             None,
         )
 
-        if not base_url:
+        if not url:
             raise ValueError(
                 "COGNICK_COGNITIVE_BASE_URL must be configured "
                 "in Django settings."
             )
 
-        return base_url.rstrip("/")
+        return url.rstrip("/")
 
     def get_parameter(
-        self,
-        parameter_id: str | int,
+        self
     ) -> CognitiveParameter:
         url = (
-            f"{self.base_url}/"
-            f"cognitive-parameters/{parameter_id}/"
+            f"{self.url}/"
         )
 
         try:
@@ -67,7 +65,7 @@ class CognitiveClient:
 
         if response.status_code == 404:
             raise CognitiveNotFoundException(
-                f"Cognitive parameter {parameter_id!r} was not found."
+                f"Cognitive parameter was not found."
             )
 
         if not response.ok:
