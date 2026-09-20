@@ -1,0 +1,29 @@
+[project]
+name = "cognick"
+version = "0.0.3"
+description = "Reusable Django package for working with Cognick cognitive parameters."
+authors = [
+    { name = "Yousef Haghighat", email = "yousefmpym1@gmail.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+
+dependencies = [
+    "Django>=5.2",
+    "djangorestframework>=3.16",
+    "requests>=2.32"
+]
+
+[project.urls]
+Homepage = "https://github.com/YousefHaghighat/cognick-package"
+Repository = "https://github.com/YousefHaghighat/cognick-package"
+
+[build-system]
+requires = [
+    "setuptools>=61"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["cognick*"]
