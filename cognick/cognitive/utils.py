@@ -1,7 +1,7 @@
 from typing import Any
 from django.conf import settings
 
-from caching import RedisCache
+from cognick.caching import RedisCache
 from .client import CognitiveClient
 
 
