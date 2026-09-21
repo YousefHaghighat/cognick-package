@@ -1,6 +1,6 @@
 [project]
 name = "cognick"
-version = "0.0.3"
+version = "0.0.4"
 description = "Reusable Django package for working with Cognick cognitive parameters."
 authors = [
     { name = "Yousef Haghighat", email = "yousefmpym1@gmail.com" }
